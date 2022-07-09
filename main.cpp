@@ -1,18 +1,39 @@
-#include "pico_explorer.hpp"
+/*
+ * main.cpp - part of PicoWlendar
+ *
+ * Copyright (C) 2022 Pete Favelle <rp2040@ahnlak.com>
+ *
+ * This file is distributed under the BSD 3-Clause License; see LICENSE for details.
+ *
+ * Entry point; where we find main() and supporting code.
+ */
+
+#include "pico/stdlib.h"
+#include <stdio.h>
+#include <cstring>
+#include <string>
+#include <algorithm>
+#include "pico/time.h"
+#include "pico/platform.h"
+
+#include "common/pimoroni_common.hpp"
+
+#include "picowlendar.hpp"
 
 using namespace pimoroni;
 
-uint16_t buffer[PicoExplorer::WIDTH * PicoExplorer::HEIGHT];
-PicoExplorer pico_explorer(buffer);
-
 int main() {
-    pico_explorer.init();
 
-    pico_explorer.set_pen(255, 0, 0);
+  stdio_init_all();
 
-    while(true) {
-        pico_explorer.pixel(Point(0, 0));
-        // now we've done our drawing let's update the screen
-        pico_explorer.update();
-    }
+  sleep_ms(500);
+
+  printf("\n\n=======\nPicowlendar starting up\n\n");
+
+  display_init();
+  display_update();
+
+
 }
+
+/* End of main.cpp */

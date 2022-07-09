@@ -1,20 +1,16 @@
-# Pico C++ Boilerplate Project <!-- omit in toc -->
+# PicoWlendar
 
-This project is intended as a starting point for working with the Pico SDK and Pimoroni Libraries in C++.
+A connected clock and calendar for the Pico W paired with the [Pico Inky Pack](https://shop.pimoroni.com/products/pico-inky-pack)
 
-- [Before you start](#before-you-start)
-- [Preparing your build environment](#preparing-your-build-environment)
-- [Grab the Pimoroni libraries](#grab-the-pimoroni-libraries)
-- [Clone this boilerplate](#clone-this-boilerplate)
-- [Prepare Visual Studio Code](#prepare-visual-studio-code)
-- [Prepare your project](#prepare-your-project)
-- [Pick your LICENSE](#pick-your-license)
+## Building
 
-## Before you start
+This application is written in C++ (or, at least, C); you will want to have a
+normal Pico development environment in order to build it. I've included the
+basic instructions for a Linux / Raspberry Pi / WSL type setup.
 
-It's easier if you make a `pico` directory or similar in which you keep the SDK, Pimoroni Libraries and your projects alongside each other. This makes it easier to include libraries.
+If you insist on using Windows, I think the steps are similar but you're mostly
+on your own :-)
 
-## Preparing your build environment
 
 Install build requirements:
 
@@ -47,37 +43,26 @@ export PICO_SDK_PATH="/path/to/pico-sdk"
 git clone https://github.com/pimoroni/pimoroni-pico
 ```
 
-## Clone this boilerplate
+## Clone this repository
 
 ```
-git clone https://github.com/pimoroni/pico-boilerplate
-cd pico-boilerplate
+git clone https://github.com/ahnlak/picowlendar
+cd picowlendar
 ```
 
-If you have not or don't want to set `PICO_SDK_PATH` you can edit `.vscode/settings.json` to pass the path directly to CMake.
+# Build!
 
-## Prepare Visual Studio Code
+```
+mkdir build
+cd build
+cmake ..
+make
+```
 
-Open VS Code and hit `Ctrl+Shift+P`.
+## LICENSE
 
-Type `Install` and select `Extensions: Install Extensions`.
+As I've leaned on Pimoroni's (rather outdated) template, I'm sticking to their provided
+BSD 3-Clause License rather than my usual MIT one. It's pretty similar though; feel
+free to use is as you see fit, credit is appreciated.
 
-Make sure you install:
-
-1. C/C++
-2. CMake
-3. CMake Tools
-4. Cortex-Debug (optional: for debugging via a Picoprobe or Pi GPIO)
-5. Markdown All in One (recommended: for preparing your own README.md)
-
-## Prepare your project
-
-Edit `CMakeLists.txt` and follow the instructions, you should make sure you:
-
-1. edit your project name
-2. include the libraries you need
-2. link the libraries to your project
-
-## Pick your LICENSE
-
-We've included a copy of BSD 3-Clause License to match that used in Raspberry Pi's Pico SDK and Pico Examples. You should review this and check it's appropriate for your project before publishing your code.
+*Share and Enjoy*

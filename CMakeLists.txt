@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 
-# Change your executable name to something creative!
-set(NAME pico-boilerplate) # <-- Name your project/executable here!
+# Set the project name
+set(NAME picowlendar)
 
 include(pimoroni_pico_import.cmake)
 include(pico_sdk_import.cmake)
@@ -14,22 +14,29 @@ set(CMAKE_CXX_STANDARD 17)
 # Initialize the SDK
 pico_sdk_init()
 
-# Add your source files
+# Source files
 add_executable(${NAME}
-    main.cpp # <-- Add source files here!
+    main.cpp display.cpp
 )
 
-# Include required libraries
-# This assumes `pimoroni-pico` is stored alongside your project
-include(common/pimoroni_i2c)
-include(libraries/pico_explorer/pico_explorer)
-# include(libraries/pico_display/pico_display)
+# Slightly messy pull in of libraries we need.
+include(../pimoroni-pico/libraries/pico_graphics/pico_graphics.cmake)
+include(../pimoroni-pico/libraries/bitmap_fonts/bitmap_fonts.cmake)
+include(../pimoroni-pico/libraries/hershey_fonts/hershey_fonts.cmake)
+include(../pimoroni-pico/drivers/uc8151/uc8151.cmake)
+include(../pimoroni-pico/common/pimoroni_bus.cmake)
 
-# Don't forget to link the libraries you need!
+# Link in required libraries
 target_link_libraries(${NAME}
-    pimoroni_i2c
-    pico_explorer # <-- List libraries here!
+    pico_stdlib
+    pico_graphics
+    uc8151
+    bitmap_fonts
+    hershey_fonts
 )
+
+pico_enable_stdio_usb(${NAME} 1)
+pico_enable_stdio_uart(${NAME} 0)
 
 # create map/bin/hex file etc.
 pico_add_extra_outputs(${NAME})
